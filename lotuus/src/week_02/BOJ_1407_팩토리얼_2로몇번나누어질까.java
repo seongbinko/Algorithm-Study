@@ -21,7 +21,7 @@ public class BOJ_1407_팩토리얼_2로몇번나누어질까 {
         //A~B 에 포함된 숫자들 각각 N의 제곱수로 나누어지는 약수를 모두 찾고, 더해서 출력해라
 
         long resultB = B; //2^0 = 1인 경우
-        for (int i = 1; i <= 50; i++) { //TODO 왜 50인지 모르겠다!!
+        for (int i = 1; i <= 50; i++) { //TODO 왜 50인지 모르겠다!! 왜냐면, 2^50 해야 주어진 조건의 10^15승 이상이 됨!
             long cnt = (long) (B / Math.pow(2, i));
             long change = (long) (Math.pow(2, i) - Math.pow(2, i - 1));
             resultB = resultB + (change * cnt);
