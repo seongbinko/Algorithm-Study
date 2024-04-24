@@ -25,17 +25,16 @@ public class BOJ_2503_숫자야구 {
         //A가 생각하고있는 수
         for (int a = 1; a <= 9; a++) { //100의 자리수
             for (int b = 1; b <= 9; b++) { //10의 자리수
-                for (int c = 1; c < 9; c++) { //1의 자리수
+                for (int c = 1; c <= 9; c++) { //1의 자리수
 
                     //같은 숫자로 이루어진 세자리수는 아님. 제외
                     if( a==b || b==c || c==a ){
                         continue;
                     }
 
-                    int cnt = 0; //힌트통과 수 ?????????????????????????
+                    int passCnt = 0; //힌트통과 수
 
-
-                    //숫자비교
+                    //정답과 질문한 숫자비교
                     for (int i = 0; i < cases; i++) {
                         String hint = String.valueOf(hints[i][0]);
                         int inputStrike = hints[i][1];
@@ -46,21 +45,18 @@ public class BOJ_2503_숫자야구 {
                         int y = hint.charAt(1) - '0';
                         int z = hint.charAt(2) - '0';
 
-                        int ball = 0;
                         int strike = 0;
+                        int ball = 0;
 
                         //숫자가 a, b, c 중에 있는 경우
                         //strike는 따로 계산하니 각각 다른 자리수를 체크해야함!!
-                        boolean aBall = a==y || a==z;
-                        if(aBall){
+                        if(a==y || a==z){ //a==x 는 스트라이크
                             ball++;
                         }
-                        boolean bBall = b==x || b==z;
-                        if(bBall){
+                        if(b==x || b==z){ //b==y 는 스트라이크
                             ball++;
                         }
-                        boolean cBall = c==x || c==y;
-                        if(cBall){
+                        if(c==x || c==y){ //c==z 는 스트라이크
                             ball++;
                         }
 
@@ -76,14 +72,17 @@ public class BOJ_2503_숫자야구 {
                         }
 
                         //계산한 ball, strike값이 주어진 ball, strike값과 동일하다면 경우의 수를 찾은 것
-                        if(ball == inputBall && strike == inputStrike){
-                            cnt++; //힌트를 하나 통과했다
+                        if(strike == inputStrike && ball == inputBall){
+                            passCnt++; //힌트를 하나 통과했다
                         }
 
-                        if(cnt == cases){
+                        //영수가 질문한 모든 답에 해당. 정답일 가능성이 있는 숫자이다.
+                        if(passCnt == cases){
+                            //System.out.println(a+""+b+""+c);
                             result++;
                         }
                     }
+
 
                 }
             }
@@ -92,4 +91,33 @@ public class BOJ_2503_숫자야구 {
         System.out.println(result);
 
     }
+
+
+    /*
+    정답 : 서로 다른 숫자 세개로 구성된 세 자리수
+    스트라이크 : 정답 숫자들 중에 동일한 수, 동일한 자리에 위치하는 경우
+    볼 : 정답 숫자들 중에 동일한 수, 다른 자리에 위치하는 경우
+
+    풀이
+    정답 범위 : 123~987
+    왜냐면, 서로 다른 숫자들이기 때문
+
+    정답이 123인 경우,
+        질문 123에 대해서 스트라이크 3개, 볼 0개가 나온다. 질문의 답인 스트라이크 1개, 볼 1개와 다르기 때문에 123은 정답이 아니다.
+
+    정답이 124인 경우,
+        질문 123에 대해서 스트라이크 2개, 볼 0개가 나온다. 질문의 답인 스트라이크 1개, 볼 1개와 다르기 때문에 123은 정답이 아니다.
+
+    ...
+
+    정답이 ???인 경우,
+        질문 123에 대해서 스트라이크 1개, 볼 1개가 나온다. 질문의 답과 동일하기 때문에 ???은 정답이 될 수 있다.
+        질문 356에 대해서 스트라이크 1개, 볼 0개가 나온다. 질문의 답과 동일하기 때문에 ???은 정답이 될 수 있다.
+        ..
+        ..
+
+        영수가 질문한 모든 답에 해당된다면 정답일 가능성이 있는 숫자이다.
+
+    * */
+
 }
