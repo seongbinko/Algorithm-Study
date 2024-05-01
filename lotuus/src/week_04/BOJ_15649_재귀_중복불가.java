@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
-import java.util.UUID;
 
-public class BOJ_15649_재귀_중복되는수열출력안함 {
+public class BOJ_15649_재귀_중복불가 {
 
     /*
         중복되는 수열 출력하면 안됨

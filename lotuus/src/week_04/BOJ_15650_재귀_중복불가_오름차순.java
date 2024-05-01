@@ -3,10 +3,9 @@ package week_04;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ_15650_재귀_중복없음_오름차순 {
+public class BOJ_15650_재귀_중복불가_오름차순 {
 
     /*
         중복되는 수열 출력하면 안됨

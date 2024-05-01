@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ_15655_재귀_주어진수_오름차순 {
+public class BOJ_15655_재귀_중복불가_주어진수_오름차순 {
 
     static int N = 0;
     static int M = 0;

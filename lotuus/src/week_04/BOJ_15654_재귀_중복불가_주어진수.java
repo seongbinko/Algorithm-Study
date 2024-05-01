@@ -4,10 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.StringTokenizer;
 
-public class BOJ_15654_재귀_주어진수 {
+public class BOJ_15654_재귀_중복불가_주어진수 {
 
     static int N = 0;
     static int M = 0;
