@@ -23,12 +23,12 @@ public class BOJ_14501_퇴사 {
             int p = Integer.parseInt(st.nextToken());
             list.add(new int[]{t, p});
         }
-        recur(0, 0);
+        recur2(0, 0);
         System.out.println(answer);
     }
 
     private static void recur(int index, int p) {
-        if (index == N) {
+        if (index == N - 1) {
             answer = Math.max(answer, p);
             return;
         }
@@ -39,5 +39,22 @@ public class BOJ_14501_퇴사 {
         }
         // 상담하지 않는다.
         recur(index + 1, p);
+    }
+
+    private static void recur2(int index, int p) {
+        if (index == N) {
+            answer = Math.max(answer, p);
+            return;
+        }
+        if (index > N) {
+            return;
+        }
+
+        int[] arr = list.get(index);
+        // 상담 한다
+        recur2(index + arr[0], p + arr[1]);
+
+        // 상담하지 않는다.
+        recur2(index + 1, p);
     }
 }
