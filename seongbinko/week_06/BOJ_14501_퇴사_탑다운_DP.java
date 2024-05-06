@@ -29,17 +29,17 @@ public class BOJ_14501_퇴사_탑다운_DP {
         dp = new int[N];
         Arrays.fill(dp, -1);
 
-        recur(0);
+        int answer = recur(0);
+        System.out.println(answer);
         System.out.println(Arrays.toString(dp));
-        System.out.println(dp[0]);
     }
 
     private static int recur(int index) {
-        if (index == N) {
-            return 0;
-        }
         if (index > N) {
             return Integer.MIN_VALUE;
+        }
+        if (index == N) {
+            return 0;
         }
         // 이미 한 번 들름
         if (dp[index] != -1) {
