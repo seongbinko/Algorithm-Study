@@ -53,10 +53,10 @@ public class BOJ_2606_DFS_BFS_바이러스 {
         Deque<Integer> deque = new LinkedList<>();
         deque.addLast(1);
         while (!deque.isEmpty()) {
-            int k = deque.pollFirst();
-            visited[k] = 1;
+            int node = deque.pollFirst();
+            visited[node] = 1;
 
-            for (int next : graph.get(k)) {
+            for (int next : graph.get(node)) {
                 if (visited[next] == 1) {
                     continue;
                 }
