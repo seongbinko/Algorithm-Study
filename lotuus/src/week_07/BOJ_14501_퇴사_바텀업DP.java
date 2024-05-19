@@ -10,77 +10,47 @@ public class BOJ_14501_퇴사_바텀업DP {
 
     static int N;
     static Interview[] interviews;
-    static int[] dp;
+    static int[] dp; //받을 수 있는 금액 저장
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken()); //남은 일수
-        interviews = new Interview[N];
+        interviews = new Interview[N+1];
         dp = new int[N+1];
-        Arrays.fill(dp, -1);
+        Arrays.fill(dp, -1); //-1인 이유 : 받을 수 있는 금액이 0일수도 있으니까
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine());
             interviews[i] = new Interview(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
         }
 
-        int maxPrice = recursion(0);
-        System.out.println(maxPrice);
 
+        for (int index = N-1; index >= 0; index--) {
+            int nextIndex = index + interviews[index].getDay();
 
-//        for (int index = N+1; 0 < index; index--) {
-//
-//            if(index){
-//
-//            }
-//
-//            //상담 가능하니 가격을 넣고
-//            //다음 가능한 날짜 탐색
-//            int nextIndex = index + interviews[index].getDay();
-//            int workPrice = dp[nextIndex] + interviews[index].getPrice();
-//
-//            //상담 가능여부와 상관없이 상담 안함
-//            //상담 불가
-//            int noWorkPrice = dp[index+1];
-//
-//            //index에 해당하는 날짜에 더 많은 돈을 버는 경우의 수를 저장
-//            dp[index] = Math.max(workPrice, noWorkPrice);
-//
-//        }
+            //DP 범위를 벗어났다면
+            if(N < nextIndex){
 
+                dp[index] = dp[index+1];
 
-    }
+            }else{
 
-    private static int recursion(int index) {
+                //상담 함. 다음 상담일로 이동
+                //그리고!! 상담했으니까 돈 추가
+                int workPrice = dp[nextIndex] + interviews[index].getPrice();
 
-        //퇴사 이후 날짜인 경우
-        if(N == index){
-            return 0; //상담해서 받는 돈 없음
+                //상담 안함
+                int noWorkPrice = dp[index+1];
+
+                //DP테이블에 결과 저장. index(날짜)별로 max(상담 했을 때, 상담 안했을 때)값
+                dp[index] = Math.max(workPrice, noWorkPrice);
+
+            }
         }
 
-        if(index > N){
-            return Integer.MIN_VALUE;
-        }
+        System.out.println(dp[0]);
 
-        //이미 저장되었다면
-        if(dp[index] != -1){
-            return dp[index];
-        }
-
-        //상담 가능하니 가격을 넣고
-        //다음 가능한 날짜 탐색
-        int nextIndex = index + interviews[index].getDay();
-        int workPrice = recursion(nextIndex) + interviews[index].getPrice();
-
-        //상담 가능여부와 상관없이 상담 안함
-        //상담 불가
-        int noWorkPrice = recursion(index+1);
-
-        //index에 해당하는 날짜에 더 많은 돈을 버는 경우의 수를 저장
-        dp[index] = Math.max(workPrice, noWorkPrice);
-
-        return dp[index];
     }
 
 
