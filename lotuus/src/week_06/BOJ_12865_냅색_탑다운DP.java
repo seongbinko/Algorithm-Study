@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ_12865_냅색_DP {
+public class BOJ_12865_냅색_탑다운DP {
 
     static int N;
     static int maxWeight;

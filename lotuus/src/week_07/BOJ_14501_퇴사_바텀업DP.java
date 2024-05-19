@@ -1,4 +1,4 @@
-package week_06;
+package week_07;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ_14501_퇴사_DP {
+public class BOJ_14501_퇴사_바텀업DP {
 
     static int N;
     static Interview[] interviews;
@@ -27,6 +27,28 @@ public class BOJ_14501_퇴사_DP {
 
         int maxPrice = recursion(0);
         System.out.println(maxPrice);
+
+
+//        for (int index = N+1; 0 < index; index--) {
+//
+//            if(index){
+//
+//            }
+//
+//            //상담 가능하니 가격을 넣고
+//            //다음 가능한 날짜 탐색
+//            int nextIndex = index + interviews[index].getDay();
+//            int workPrice = dp[nextIndex] + interviews[index].getPrice();
+//
+//            //상담 가능여부와 상관없이 상담 안함
+//            //상담 불가
+//            int noWorkPrice = dp[index+1];
+//
+//            //index에 해당하는 날짜에 더 많은 돈을 버는 경우의 수를 저장
+//            dp[index] = Math.max(workPrice, noWorkPrice);
+//
+//        }
+
 
     }
 
