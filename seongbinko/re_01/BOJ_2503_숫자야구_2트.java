@@ -20,23 +20,25 @@ public class BOJ_2503_숫자야구_2트 {
             answers.add(new int[]{Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())});
         }
         int answer = 0;
-        for (int i = 0; i < N; i++) {
-            int exStrike = answers.get(i)[0];
-            int exBall = answers.get(i)[1];
+        for (int x = 1; x <= 9; x++) {
+            for (int y = 1; y <= 9; y++) {
+                for (int z = 1; z <= 9; z++) {
+                    if (x != y && y != z && z != x) {
+
+                        int count = 0;
+                        for (int i = 0; i < N; i++) {
+                            int exStrike = answers.get(i)[0];
+                            int exBall = answers.get(i)[1];
+
+                            int ball = 0;
+                            int strike = 0;
 
 
-            int i1 = Integer.parseInt(guess.get(i)[0]);
-            int i2 = Integer.parseInt(guess.get(i)[0]);
-            int i3 = Integer.parseInt(guess.get(i)[0]);
+                            int i1 = Integer.parseInt(guess.get(i)[0]);
+                            int i2 = Integer.parseInt(guess.get(i)[1]);
+                            int i3 = Integer.parseInt(guess.get(i)[2]);
 
-            int strike = 0;
-            int ball = 0;
-            for (int x = 1; x <= 9; x++) {
-                for (int y = 1; y <= 9; y++) {
-                    for (int z = 1; z <= 9; z++) {
-                        // 서로 다른수
-                        // xyz <- 정답이라 생각되는 수
-                        if (x != y && y != z && z != x) {
+                            // xyz <- 정답이라 생각되는 수
                             if (i1 == x) {
                                 strike++;
                             } else if (i1 == y) {
@@ -60,8 +62,12 @@ public class BOJ_2503_숫자야구_2트 {
                             } else if (i3 == z) {
                                 strike++;
                             }
+
+                            if (strike == exStrike && ball == exBall) {
+                                count++;
+                            }
                         }
-                        if (strike == exStrike && ball == exBall) {
+                        if (count == N) {
                             System.out.println(String.format("%d %d %d", x, y, z));
                             answer++;
                         }
@@ -69,7 +75,6 @@ public class BOJ_2503_숫자야구_2트 {
                 }
             }
         }
-
         System.out.println(answer);
     }
 }
