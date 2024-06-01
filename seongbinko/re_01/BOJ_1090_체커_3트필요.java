@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class BOJ_1090_체커 {
+public class BOJ_1090_체커_3트필요 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Integer N = Integer.parseInt(br.readLine());
