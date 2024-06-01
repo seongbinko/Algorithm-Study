@@ -12,29 +12,30 @@ public class BOJ_1090_체커 {
         int[] answer = new int[N];
         Arrays.fill(answer, Integer.MAX_VALUE);
         List<int[]> inputs = new ArrayList<>();
-        int min = Integer.MAX_VALUE;
-        int max = -1;
+        int[] X = new int[N];
+        int[] Y = new int[N];
         for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
             inputs.add(new int[]{x, y});
-            min = Math.min(min, x);
-            min = Math.min(min, y);
-            max = Math.max(max, x);
-            max = Math.max(max, y);
+            X[i] = x;
+            Y[i] = y;
+
         }
         // 메모리 초과, 범위를 max로 하면 안된다.
-        for (int x = min; x <= max; x++) {
-            for (int y = min; y <= max; y++) {
+        for (int x = 0; x < X.length; x++) {
+            for (int y = 0; y < Y.length; y++) {
                 // 해당 지점까지 걸리는 거리
+                int x1 = X[x];
+                int y1 = Y[y];
                 List<Integer> list = new ArrayList<>();
                 for (int[] input : inputs) {
                     int a = input[0];
                     int b = input[1];
 
-                    int xResult = Math.abs(x - a);
-                    int yResult = Math.abs(y - b);
+                    int xResult = Math.abs(x1 - a);
+                    int yResult = Math.abs(y1 - b);
                     list.add(xResult + yResult);
                 }
                 // 거리가 적게 걸리는 순으로
