@@ -1,10 +1,8 @@
 package week_03;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class BOJ_2559_수열 {
+public class BOJ_2559_양수열 {
     public static void main(String[] args) {
         /**
          * 수열의 길이 A와, 간격 B가 주어집니다.
