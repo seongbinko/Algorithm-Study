@@ -1,4 +1,4 @@
-package re_05;
+package re_05_경우의수;
 
 import java.io.BufferedReader;
 import java.io.IOException;
