@@ -3,6 +3,7 @@ package dp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_1937_많이이동하기_인프런 {
@@ -33,6 +34,10 @@ public class BOJ_1937_많이이동하기_인프런 {
             }
         }
         dp = new int[n][n];
+        for (int i = 0; i < dp.length; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+
 
         //모든 칸에서 얼만큼 이동할 수 있는지 구하자.
         for (int y = 0; y < n; y++) {
@@ -62,12 +67,13 @@ public class BOJ_1937_많이이동하기_인프런 {
 
     private static int moveAndGetDistance(int y, int x) {
 
-        if(dp[y][x] != 0){ //탐색한 곳이라면
+        if(dp[y][x] != -1){ //탐색한 곳이라면
             return dp[y][x];
         }
 
         //탐색 안한 곳이라면
         //상하좌우 이동
+        int point = 0;
         for (int i = 0; i < distance.length; i++) {
             int dy = y + distance[i][0];
             int dx = x + distance[i][1];
@@ -79,11 +85,12 @@ public class BOJ_1937_많이이동하기_인프런 {
 
             //이동 전 <= 이동 후 대나무가 더 많이 있어야 이동 가능하다
             if(ground[y][x] <= ground[dy][dx]){
-                dp[y][x] = Math.max(dp[y][x], moveAndGetDistance(dy, dx)+1 );
+                point = Math.max(point, moveAndGetDistance(dy, dx)+1 );
                 // +1의 의미 : 다음 좌표로 이동했으니 이동거리인 +1을 추가한다
             }
         }
 
+        dp[y][x] = point;
         return dp[y][x];
     }
 
